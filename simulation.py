@@ -84,3 +84,44 @@ def best_hand_score(cards):
 def eval_hand(cards):
     """Return the hand name string for the best 5-card hand from 5–7 cards."""
     return HAND_NAMES[best_hand_score(cards)[0]]
+
+
+def run_simulation(hole_cards, n_opponents, n_sims=5000):
+    """
+    Monte Carlo simulation of n_sims Texas Hold'em hands.
+    Returns {"win_pct": float, "won_with": {hand: count}, "lost_to": {hand: count}}.
+    Ties (split pots) are not counted as wins and not recorded in lost_to.
+    """
+    deck = [c for c in make_deck() if c not in hole_cards]
+    wins = 0
+    won_with = {}
+    lost_to = {}
+
+    for _ in range(n_sims):
+        shuffled = deck.copy()
+        random.shuffle(shuffled)
+        community = shuffled[:5]
+        opp_pool = shuffled[5:5 + n_opponents * 2]
+
+        player_score = best_hand_score(hole_cards + community)
+        player_hand = HAND_NAMES[player_score[0]]
+
+        opp_scores = [
+            best_hand_score(opp_pool[i * 2:(i + 1) * 2] + community)
+            for i in range(n_opponents)
+        ]
+
+        if all(player_score > s for s in opp_scores):
+            wins += 1
+            won_with[player_hand] = won_with.get(player_hand, 0) + 1
+        else:
+            beating = [s for s in opp_scores if s > player_score]
+            if beating:
+                best_opp = HAND_NAMES[max(beating)[0]]
+                lost_to[best_opp] = lost_to.get(best_opp, 0) + 1
+
+    return {
+        "win_pct": round(wins / n_sims * 100, 1),
+        "won_with": dict(sorted(won_with.items(), key=lambda x: x[1], reverse=True)),
+        "lost_to": dict(sorted(lost_to.items(), key=lambda x: x[1], reverse=True)),
+    }

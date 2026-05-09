@@ -1,4 +1,4 @@
-from simulation import parse_cards, eval_hand
+from simulation import parse_cards, eval_hand, run_simulation, HAND_NAMES
 
 
 class TestParseCards:
@@ -103,3 +103,34 @@ class TestEvalHand:
         # 5 hearts available → should find the flush
         cards = [('2','H'),('5','H'),('7','H'),('J','H'),('K','H'),('A','S'),('3','D')]
         assert eval_hand(cards) == "Flush"
+
+
+class TestRunSimulation:
+    def test_returns_required_keys(self):
+        result = run_simulation([('A','H'),('K','S')], n_opponents=2, n_sims=100)
+        assert "win_pct" in result
+        assert "won_with" in result
+        assert "lost_to" in result
+
+    def test_win_pct_in_valid_range(self):
+        result = run_simulation([('A','H'),('K','S')], n_opponents=2, n_sims=200)
+        assert 0 <= result["win_pct"] <= 100
+
+    def test_pocket_aces_favored_heads_up(self):
+        result = run_simulation([('A','H'),('A','S')], n_opponents=1, n_sims=1000)
+        assert result["win_pct"] > 50
+
+    def test_won_with_keys_are_valid_hand_names(self):
+        result = run_simulation([('A','H'),('A','S')], n_opponents=2, n_sims=200)
+        for name in result["won_with"]:
+            assert name in HAND_NAMES
+
+    def test_lost_to_keys_are_valid_hand_names(self):
+        result = run_simulation([('2','H'),('7','S')], n_opponents=2, n_sims=200)
+        for name in result["lost_to"]:
+            assert name in HAND_NAMES
+
+    def test_won_with_sorted_descending(self):
+        result = run_simulation([('A','H'),('A','S')], n_opponents=1, n_sims=500)
+        counts = list(result["won_with"].values())
+        assert counts == sorted(counts, reverse=True)
