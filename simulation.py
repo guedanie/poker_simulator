@@ -30,3 +30,57 @@ def parse_cards(text):
     if cards[0] == cards[1]:
         return None, f"Duplicate card: {tokens[0]}"
     return cards, None
+
+
+def _score_5(cards):
+    """Score a 5-card hand. Returns a comparable tuple; higher tuple = stronger hand."""
+    ranks = sorted([RANK_VALUES[c[0]] for c in cards], reverse=True)
+    suits = [c[1] for c in cards]
+    is_flush = len(set(suits)) == 1
+    rank_counts = {}
+    for r in ranks:
+        rank_counts[r] = rank_counts.get(r, 0) + 1
+    counts = sorted(rank_counts.values(), reverse=True)
+    # Detect straight, including A-2-3-4-5 wheel
+    is_straight = False
+    straight_ranks = ranks
+    if len(set(ranks)) == 5:
+        if ranks[0] - ranks[4] == 4:
+            is_straight = True
+        elif set(ranks) == {12, 3, 2, 1, 0}:  # A-2-3-4-5
+            is_straight = True
+            straight_ranks = [3, 2, 1, 0, -1]  # ace plays below 2
+    if is_straight and is_flush:
+        if straight_ranks[0] == 12:
+            return (9,) + tuple(straight_ranks)  # Royal Flush
+        return (8,) + tuple(straight_ranks)      # Straight Flush
+    if counts[0] == 4:
+        return (7,) + tuple(ranks)               # Four of a Kind
+    if counts[:2] == [3, 2]:
+        return (6,) + tuple(ranks)               # Full House
+    if is_flush:
+        return (5,) + tuple(ranks)               # Flush
+    if is_straight:
+        return (4,) + tuple(straight_ranks)      # Straight
+    if counts[0] == 3:
+        return (3,) + tuple(ranks)               # Three of a Kind
+    if counts[:2] == [2, 2]:
+        return (2,) + tuple(ranks)               # Two Pair
+    if counts[0] == 2:
+        return (1,) + tuple(ranks)               # Pair
+    return (0,) + tuple(ranks)                   # High Card
+
+
+def best_hand_score(cards):
+    """Return the best score tuple from 5–7 cards (checks all C(n,5) combinations)."""
+    best = None
+    for combo in combinations(cards, 5):
+        score = _score_5(combo)
+        if best is None or score > best:
+            best = score
+    return best
+
+
+def eval_hand(cards):
+    """Return the hand name string for the best 5-card hand from 5–7 cards."""
+    return HAND_NAMES[best_hand_score(cards)[0]]
