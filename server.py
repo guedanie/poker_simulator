@@ -50,7 +50,7 @@ def server(input, output, session):
         def bar_rows(hand_dict, color):
             total = sum(hand_dict.values())
             rows = []
-            for name, count in list(hand_dict.items())[:5]:
+            for name, count in sorted(hand_dict.items(), key=lambda x: x[1], reverse=True)[:5]:
                 pct = round(count / total * 100, 1) if total > 0 else 0
                 rows.append(ui.div(
                     ui.div(
@@ -60,8 +60,7 @@ def server(input, output, session):
                     ),
                     ui.div(
                         ui.div(style=(
-                            f"background:{color}; width:{pct}%;"
-                            "height:6px; border-radius:3px;"
+                            f"background:{color}; width:{pct}%; height:6px; border-radius:3px;"
                         )),
                         style="background:#444; border-radius:3px; height:6px; margin-bottom:10px;",
                     ),
