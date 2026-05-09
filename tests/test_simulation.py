@@ -1,4 +1,4 @@
-from simulation import parse_cards, eval_hand, run_simulation, HAND_NAMES
+from simulation import parse_cards, eval_hand, run_simulation, HAND_NAMES, best_hand_score
 
 
 class TestParseCards:
@@ -103,6 +103,24 @@ class TestEvalHand:
         # 5 hearts available → should find the flush
         cards = [('2','H'),('5','H'),('7','H'),('J','H'),('K','H'),('A','S'),('3','D')]
         assert eval_hand(cards) == "Flush"
+
+    def test_pair_rank_beats_high_kickers(self):
+        # Pair of 3s beats pair of 2s even when 2s have AKQ kickers
+        threes = best_hand_score([('3','H'),('3','S'),('K','D'),('Q','C'),('J','H'),('2','S'),('4','D')])
+        twos   = best_hand_score([('2','H'),('2','S'),('A','D'),('K','C'),('Q','H'),('3','D'),('4','S')])
+        assert threes > twos
+
+    def test_full_house_trips_rank_is_primary(self):
+        # Threes full of kings beats twos full of aces
+        fh_333kk = best_hand_score([('3','H'),('3','S'),('3','D'),('K','C'),('K','H'),('2','S'),('4','D')])
+        fh_222aa = best_hand_score([('2','H'),('2','S'),('2','D'),('A','C'),('A','H'),('3','D'),('4','S')])
+        assert fh_333kk > fh_222aa
+
+    def test_four_of_a_kind_rank_is_primary(self):
+        # Quad 3s beats quad 2s even with ace kicker
+        quads_3 = best_hand_score([('3','H'),('3','S'),('3','D'),('3','C'),('A','H'),('K','S'),('2','D')])
+        quads_2 = best_hand_score([('2','H'),('2','S'),('2','D'),('2','C'),('A','H'),('K','S'),('3','D')])
+        assert quads_3 > quads_2
 
 
 class TestRunSimulation:

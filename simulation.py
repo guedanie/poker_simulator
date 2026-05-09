@@ -40,7 +40,11 @@ def _score_5(cards):
     rank_counts = {}
     for r in ranks:
         rank_counts[r] = rank_counts.get(r, 0) + 1
-    counts = sorted(rank_counts.values(), reverse=True)
+    # Sort groups: primary key = count desc, secondary key = rank desc
+    # This puts the group (pair/trips/quads) before kickers in the score tuple
+    groups = sorted(rank_counts.items(), key=lambda x: (x[1], x[0]), reverse=True)
+    ordered_ranks = [r for r, c in groups for _ in range(c)]
+    counts = [c for _, c in groups]
     # Detect straight, including A-2-3-4-5 wheel
     is_straight = False
     straight_ranks = ranks
@@ -55,20 +59,20 @@ def _score_5(cards):
             return (9,) + tuple(straight_ranks)  # Royal Flush
         return (8,) + tuple(straight_ranks)      # Straight Flush
     if counts[0] == 4:
-        return (7,) + tuple(ranks)               # Four of a Kind
+        return (7,) + tuple(ordered_ranks)       # Four of a Kind
     if counts[:2] == [3, 2]:
-        return (6,) + tuple(ranks)               # Full House
+        return (6,) + tuple(ordered_ranks)       # Full House
     if is_flush:
-        return (5,) + tuple(ranks)               # Flush
+        return (5,) + tuple(ranks)               # Flush (no groups, use plain ranks)
     if is_straight:
         return (4,) + tuple(straight_ranks)      # Straight
     if counts[0] == 3:
-        return (3,) + tuple(ranks)               # Three of a Kind
+        return (3,) + tuple(ordered_ranks)       # Three of a Kind
     if counts[:2] == [2, 2]:
-        return (2,) + tuple(ranks)               # Two Pair
+        return (2,) + tuple(ordered_ranks)       # Two Pair
     if counts[0] == 2:
-        return (1,) + tuple(ranks)               # Pair
-    return (0,) + tuple(ranks)                   # High Card
+        return (1,) + tuple(ordered_ranks)       # Pair
+    return (0,) + tuple(ranks)                   # High Card (no groups, use plain ranks)
 
 
 def best_hand_score(cards):
