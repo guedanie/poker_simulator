@@ -1,5 +1,7 @@
 # Poker Hand Simulator
 
+**Live app:** https://019e0f9f-ef20-2fa2-a893-5ed77031c941.share.connect.posit.cloud/
+
 A Shiny for Python app that simulates Texas Hold'em hand strength using Monte Carlo methods. Enter your two hole cards and the number of opponents, and the app runs 5,000 simulated hands to estimate how often your hand wins — and what you win and lose to most.
 
 ## What It Does
