@@ -58,6 +58,23 @@ pip install rsconnect-python
 rsconnect deploy shiny . --server <your-connect-url> --api-key <your-api-key>
 ```
 
+## Future Next Steps
+
+### User Profiles & Hand History
+Add the ability for players to log in and save hands from real sessions. Each hand would record hole cards, number of opponents, the simulated win probability, and the actual outcome (won, lost, or folded). Posit Connect's built-in authentication provides the user identity — no custom login screen needed.
+
+### Session Statistics
+Once hand history exists, surface a session summary view: total hands played, actual win rate vs. simulated win rate, and which hand types you most commonly won or lost with over time. Useful for spotting patterns across sessions.
+
+### Supabase as the Database
+Since the app runs on Posit Connect's hosted cloud (not a local server), a hosted PostgreSQL database is required for persistence. [Supabase](https://supabase.com) is the recommended choice — free tier, straightforward Python integration via `psycopg2`, and no infrastructure to manage. The connection string would be stored as an environment variable in Posit Connect, keeping credentials out of the codebase.
+
+The core table would look like:
+```
+hands (user, timestamp, hole_cards, n_opponents, sim_win_pct, outcome)
+```
+where `outcome` is one of `won`, `lost`, or `folded`, entered manually by the player after the hand resolves.
+
 ## Tech Stack
 
 - [Shiny for Python](https://shiny.posit.co/py/) (Core mode)
