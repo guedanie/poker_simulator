@@ -1,0 +1,80 @@
+<h2>Three approaches for the Python Shiny app</h2>
+<p class="subtitle">All use Core mode. Difference is file structure and UI polish.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#0d1117;border-radius:6px;font-family:monospace;font-size:11px;color:#e6edf3;line-height:1.8">
+      <div style="color:#8b949e">📁 poker_simulator/</div>
+      <div style="padding-left:16px;color:#f39c12">└── app.py <span style="color:#555"># ~300 lines, everything here</span></div>
+      <div style="margin-top:10px;background:#161b22;padding:8px;border-radius:4px">
+        <div style="color:#8b949e"># app.py contains:</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">deal_cards</span>(): ...</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">eval_hand</span>(): ...</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">run_simulation</span>(): ...</div>
+        <div style="color:#8b949e">app_ui = ui.page_fluid(...)</div>
+        <div style="color:#8b949e">def server(input, output, session): ...</div>
+        <div style="color:#8b949e">app = App(app_ui, server)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Single <code>app.py</code></h3>
+      <p>UI, server logic, and poker simulation all in one file. Fine for a first pass, but gets unwieldy fast.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Simple — one file to open</li><li>Easy to deploy</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Long and hard to navigate</li><li>Poker logic buried in app code</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#0d1117;border-radius:6px;font-family:monospace;font-size:11px;color:#e6edf3;line-height:1.8">
+      <div style="color:#8b949e">📁 poker_simulator/</div>
+      <div style="padding-left:16px">├── <span style="color:#f39c12">app.py</span> <span style="color:#555">  # App(app_ui, server)</span></div>
+      <div style="padding-left:16px">├── <span style="color:#3498db">ui.py</span> <span style="color:#555">   # all ui.* layout code</span></div>
+      <div style="padding-left:16px">├── <span style="color:#e74c3c">server.py</span> <span style="color:#555"># reactive logic</span></div>
+      <div style="padding-left:16px">└── <span style="color:#2ecc71">simulation.py</span> <span style="color:#555"># poker math</span></div>
+      <div style="margin-top:10px;background:#161b22;padding:8px;border-radius:4px">
+        <div style="color:#2ecc71"># simulation.py — pure Python, no Shiny</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">parse_card</span>(s): ...</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">eval_hand</span>(cards): ...</div>
+        <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">run_simulation</span>(hole, n_players, n_sims): ...</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Split files <span style="background:#27ae60;color:white;padding:2px 6px;border-radius:4px;font-size:10px;vertical-align:middle">Recommended</span></h3>
+      <p>Poker math lives in <code>simulation.py</code> — completely independent of Shiny. UI and server are in their own files. Each file is short and focused.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Clean, navigable structure</li><li>Poker logic easy to test alone</li><li>Standard Posit Connect pattern</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More files to open initially</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#0d1117;border-radius:6px;font-family:monospace;font-size:11px;color:#e6edf3;line-height:1.8">
+      <div style="color:#8b949e">📁 poker_simulator/</div>
+      <div style="padding-left:16px">├── <span style="color:#f39c12">app.py</span></div>
+      <div style="padding-left:16px">├── <span style="color:#3498db">ui.py</span> <span style="color:#555">  # uses shinyswatch theme</span></div>
+      <div style="padding-left:16px">├── <span style="color:#e74c3c">server.py</span></div>
+      <div style="padding-left:16px">└── <span style="color:#2ecc71">simulation.py</span></div>
+      <div style="margin-top:10px;background:#161b22;padding:8px;border-radius:4px">
+        <div style="color:#3498db"># ui.py — polished look</div>
+        <div><span style="color:#ff7b72">import</span> shinyswatch</div>
+        <div>ui.page_fluid(</div>
+        <div style="padding-left:16px">shinyswatch.theme.darkly(),</div>
+        <div style="padding-left:16px"><span style="color:#8b949e"># dark casino-style theme</span></div>
+        <div>)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Split files + <code>shinyswatch</code></h3>
+      <p>Same structure as B, but adds <code>shinyswatch</code> for a polished dark theme (think casino aesthetic). One extra dependency, looks great on Posit Connect.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Professional look out of the box</li><li>Dark theme fits poker well</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Extra package to install</li><li>Slightly more complex UI code</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>

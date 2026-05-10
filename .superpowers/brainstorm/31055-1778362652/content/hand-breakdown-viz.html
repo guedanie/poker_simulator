@@ -1,0 +1,74 @@
+<h2>How should the hand breakdown lists look?</h2>
+<p class="subtitle">You picked the win % banner + two panels layout. How detailed should each panel be?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#1a1a2e;border-radius:6px;font-size:11px;color:#ddd">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:#0d2137;border-radius:4px;padding:8px">
+          <div style="color:#2ecc71;font-size:10px;font-weight:bold;margin-bottom:6px">TOP WINS WITH</div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Pair</span><span style="color:#2ecc71">28%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>High Card</span><span style="color:#2ecc71">22%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Two Pair</span><span style="color:#2ecc71">18%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Straight</span><span style="color:#2ecc71">11%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Flush</span><span style="color:#2ecc71">9%</span></div>
+        </div>
+        <div style="background:#0d2137;border-radius:4px;padding:8px">
+          <div style="color:#e74c3c;font-size:10px;font-weight:bold;margin-bottom:6px">TOP LOSSES TO</div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Pair</span><span style="color:#e74c3c">41%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Two Pair</span><span style="color:#e74c3c">30%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Flush</span><span style="color:#e74c3c">12%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1a2a3a"><span>Straight</span><span style="color:#e74c3c">9%</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Full House</span><span style="color:#e74c3c">5%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Simple ranked lists</h3>
+      <p>Top 5 hand types in each panel, ranked by frequency. Just text + percentages — fast to read.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#1a1a2e;border-radius:6px;font-size:11px;color:#ddd">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:#0d2137;border-radius:4px;padding:8px">
+          <div style="color:#2ecc71;font-size:10px;font-weight:bold;margin-bottom:6px">TOP WINS WITH</div>
+          <div style="margin-bottom:4px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Pair</span><span style="color:#2ecc71">28%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#2ecc71;width:70%;height:6px;border-radius:2px"></div></div>
+          </div>
+          <div style="margin-bottom:4px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>High Card</span><span style="color:#2ecc71">22%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#2ecc71;width:55%;height:6px;border-radius:2px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Two Pair</span><span style="color:#2ecc71">18%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#2ecc71;width:45%;height:6px;border-radius:2px"></div></div>
+          </div>
+        </div>
+        <div style="background:#0d2137;border-radius:4px;padding:8px">
+          <div style="color:#e74c3c;font-size:10px;font-weight:bold;margin-bottom:6px">TOP LOSSES TO</div>
+          <div style="margin-bottom:4px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Pair</span><span style="color:#e74c3c">41%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#e74c3c;width:100%;height:6px;border-radius:2px"></div></div>
+          </div>
+          <div style="margin-bottom:4px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Two Pair</span><span style="color:#e74c3c">30%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#e74c3c;width:73%;height:6px;border-radius:2px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>Flush</span><span style="color:#e74c3c">12%</span></div>
+            <div style="background:#1a2a3a;border-radius:2px;height:6px"><div style="background:#e74c3c;width:29%;height:6px;border-radius:2px"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Lists with inline bar charts</h3>
+      <p>Same ranked list but with a small progress bar per hand type, making relative frequencies easier to compare visually.</p>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,79 @@
+<h2>Three approaches to building the app</h2>
+<p class="subtitle">All use base R for the simulation engine. The difference is code structure and UI polish.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#1a1a2e;border-radius:6px;font-size:11px;color:#ddd;font-family:monospace">
+      <div style="color:#aaa;margin-bottom:6px">📁 poker_simulator/</div>
+      <div style="padding-left:16px;color:#f39c12">└── app.R</div>
+      <div style="margin-top:10px;background:#0d2137;padding:8px;border-radius:4px;color:#aaa">
+        <div style="color:#2ecc71"># ui, server, and poker logic</div>
+        <div style="color:#aaa"># all in one file (~300 lines)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Single file <code>app.R</code></h3>
+      <p>Everything in one place. Easy to read top-to-bottom. Good for learning but gets hard to navigate as the app grows.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Simplest to follow</li><li>One file to deploy</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Long file, harder to edit</li><li>Logic and UI are mixed</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#1a1a2e;border-radius:6px;font-size:11px;color:#ddd;font-family:monospace">
+      <div style="color:#aaa;margin-bottom:6px">📁 poker_simulator/</div>
+      <div style="padding-left:16px">├── <span style="color:#f39c12">app.R</span> <span style="color:#555"># entry point</span></div>
+      <div style="padding-left:16px">├── <span style="color:#3498db">ui.R</span> <span style="color:#555"># layout & inputs</span></div>
+      <div style="padding-left:16px">├── <span style="color:#e74c3c">server.R</span> <span style="color:#555"># reactive logic</span></div>
+      <div style="padding-left:16px">└── <span style="color:#2ecc71">simulation.R</span> <span style="color:#555"># poker math</span></div>
+      <div style="margin-top:10px;background:#0d2137;padding:8px;border-radius:4px;color:#aaa">
+        <div><span style="color:#2ecc71">simulation.R</span> handles:</div>
+        <div style="padding-left:8px">deal_cards(), eval_hand(),</div>
+        <div style="padding-left:8px">run_simulation()</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Split files (Recommended)</h3>
+      <p>UI, server logic, and poker math each live in their own file. Each file is focused and short. This is the standard pattern for Shiny apps on Posit Connect.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Clean separation of concerns</li><li>Poker logic reusable & testable</li><li>Standard Posit Connect pattern</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More files to navigate</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#1a1a2e;border-radius:6px;font-size:11px;color:#ddd;font-family:monospace">
+      <div style="color:#aaa;margin-bottom:6px">📁 poker_simulator/</div>
+      <div style="padding-left:16px">├── <span style="color:#f39c12">app.R</span></div>
+      <div style="padding-left:16px">├── <span style="color:#3498db">ui.R</span> <span style="color:#555"># uses bslib</span></div>
+      <div style="padding-left:16px">├── <span style="color:#e74c3c">server.R</span></div>
+      <div style="padding-left:16px">└── <span style="color:#2ecc71">simulation.R</span></div>
+      <div style="margin-top:8px;background:#0d2137;padding:8px;border-radius:4px">
+        <div style="display:flex;gap:8px;margin-bottom:4px">
+          <div style="background:#27ae60;border-radius:4px;padding:4px 8px;color:white;font-size:12px;flex:1;text-align:center">
+            <div style="font-size:18px;font-weight:bold">63%</div>
+            <div style="font-size:9px;opacity:0.8">Win Rate</div>
+          </div>
+          <div style="background:#2c3e50;border-radius:4px;padding:4px 8px;color:white;font-size:12px;flex:1;text-align:center">
+            <div style="font-size:18px;font-weight:bold">5,000</div>
+            <div style="font-size:9px;opacity:0.8">Hands Run</div>
+          </div>
+        </div>
+        <div style="color:#aaa;font-size:10px;text-align:center">bslib value_box() components</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Split files + <code>bslib</code> UI</h3>
+      <p>Same structure as B, but uses the <code>bslib</code> package for a modern Bootstrap 5 look — polished value boxes, card layouts, and theming out of the box.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Most professional-looking</li><li>Great on Posit Connect</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Extra package dependency</li><li>More to learn upfront</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>

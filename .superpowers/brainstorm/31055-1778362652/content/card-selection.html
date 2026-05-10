@@ -1,0 +1,69 @@
+<h2>How should you select your two hole cards?</h2>
+<p class="subtitle">Pick the input style that feels most natural</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#1a1a2e;border-radius:6px;font-family:monospace">
+      <div style="display:flex;gap:12px;align-items:center;justify-content:center">
+        <div style="background:#fff;border-radius:6px;width:60px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#222;font-size:18px;font-weight:bold">
+          <span>A</span><span style="font-size:22px;color:#c0392b">♥</span>
+        </div>
+        <div style="background:#fff;border-radius:6px;width:60px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#222;font-size:18px;font-weight:bold">
+          <span>K</span><span style="font-size:22px;color:#222">♠</span>
+        </div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+        <select style="padding:4px 8px;border-radius:4px;border:none;font-size:13px">
+          <option>Rank: A</option>
+        </select>
+        <select style="padding:4px 8px;border-radius:4px;border:none;font-size:13px">
+          <option>Suit: ♥</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Dropdown selects</h3>
+      <p>Two pairs of dropdowns (rank + suit) for each card. Simple, works on any screen size.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#1a1a2e;border-radius:6px">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:260px;margin:0 auto">
+        <div style="background:#c0392b;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold">A♥</div>
+        <div style="background:#c0392b;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold;opacity:0.5">2♥</div>
+        <div style="background:#2c3e50;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold">K♠</div>
+        <div style="background:#2c3e50;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold;opacity:0.5">Q♠</div>
+        <div style="background:#27ae60;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold;opacity:0.5">J♣</div>
+        <div style="background:#27ae60;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold;opacity:0.5">T♣</div>
+        <div style="background:#2c3e50;border-radius:3px;height:28px;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:bold;opacity:0.5">9♠</div>
+      </div>
+      <p style="color:#aaa;font-size:11px;text-align:center;margin-top:8px">Click any card to select • 52 cards shown</p>
+    </div>
+    <div class="card-body">
+      <h3>B — Visual card grid</h3>
+      <p>Full 52-card grid you click to pick. More visual, cards grey out once selected.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#1a1a2e;border-radius:6px">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:220px;margin:0 auto">
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="color:#aaa;font-size:12px;width:50px">Card 1:</span>
+          <div style="background:#fff;border-radius:4px;padding:4px 10px;font-size:14px;font-weight:bold;color:#c0392b">A♥</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="color:#aaa;font-size:12px;width:50px">Card 2:</span>
+          <div style="background:#fff;border-radius:4px;padding:4px 10px;font-size:14px;font-weight:bold;color:#222">K♠</div>
+        </div>
+        <input style="border:none;border-bottom:1px solid #aaa;background:transparent;color:white;font-size:13px;padding:4px;width:100%" placeholder="Type: AH, KS, 2D..." />
+        <p style="color:#888;font-size:11px;margin:0">Shorthand: A=Ace, H/D/C/S for suits</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Text shorthand</h3>
+      <p>Type cards like "AH KS" (Ace of Hearts, King of Spades). Fast for power users.</p>
+    </div>
+  </div>
+</div>

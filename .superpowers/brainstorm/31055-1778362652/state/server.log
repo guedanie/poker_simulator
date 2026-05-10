@@ -1,0 +1,27 @@
+{"type":"server-started","port":54924,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:54924","screen_dir":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content","state_dir":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/state"}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/card-selection.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/card-selection.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/card-selection.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/card-selection.html"}
+{"source":"user-event","type":"click","text":"Card 1:\n          A♥\n        \n        \n          Card 2:\n          K♠\n        \n        \n        Shorthand: A=Ace, H/D/C/S for suits\n      \n    \n    \n      C — Text shorthand\n      Type cards like \"AH KS\" (Ace of Hearts, King of Spades). Fast for power users.","choice":"c","id":null,"timestamp":1778362769146}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/results-layout.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/results-layout.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/results-layout.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/results-layout.html"}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/hand-breakdown-viz.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/hand-breakdown-viz.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/hand-breakdown-viz.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/hand-breakdown-viz.html"}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/approaches.html"}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/shiny-mode.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/shiny-mode.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/shiny-mode.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/shiny-mode.html"}
+{"type":"screen-added","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/python-approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/python-approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/python-approaches.html"}
+{"type":"screen-updated","file":"/Users/danielguerrero/Documents/ai_dev_practice/poker_simulator/.superpowers/brainstorm/31055-1778362652/content/python-approaches.html"}
+{"type":"server-stopped","reason":"idle timeout"}

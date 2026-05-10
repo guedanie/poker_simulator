@@ -1,0 +1,49 @@
+<h2>Shiny for Python: Express vs Core</h2>
+<p class="subtitle">Two ways to write the same app — pick the style that feels right</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="express" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#0d1117;border-radius:6px;font-family:monospace;font-size:11px;line-height:1.7;color:#e6edf3">
+      <div><span style="color:#ff7b72">from</span> <span style="color:#79c0ff">shiny.express</span> <span style="color:#ff7b72">import</span> input, render, ui</div>
+      <div><span style="color:#ff7b72">from</span> <span style="color:#79c0ff">simulation</span> <span style="color:#ff7b72">import</span> run_sim</div>
+      <div style="margin-top:8px"><span style="color:#79c0ff">ui</span>.input_text(<span style="color:#a5d6ff">"cards"</span>, <span style="color:#a5d6ff">"Your cards:"</span>)</div>
+      <div><span style="color:#79c0ff">ui</span>.input_action_button(<span style="color:#a5d6ff">"run"</span>, <span style="color:#a5d6ff">"Run Simulation"</span>)</div>
+      <div style="margin-top:8px"><span style="color:#d2a8ff">@render.text</span></div>
+      <div><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">win_rate</span>():</div>
+      <div style="padding-left:16px"><span style="color:#ff7b72">return</span> run_sim(input.cards())</div>
+    </div>
+    <div class="card-body">
+      <h3>Express mode (simpler)</h3>
+      <p>Write UI and server logic together, top to bottom. Less boilerplate, easier to get started. Newer syntax — introduced in 2023.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Less code</li><li>Easier to read for beginners</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Harder to scale to large apps</li><li>Less like R Shiny structure</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="core" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px;background:#0d1117;border-radius:6px;font-family:monospace;font-size:11px;line-height:1.7;color:#e6edf3">
+      <div><span style="color:#ff7b72">from</span> <span style="color:#79c0ff">shiny</span> <span style="color:#ff7b72">import</span> App, ui, render, reactive</div>
+      <div style="margin-top:8px"><span style="color:#79c0ff">app_ui</span> = ui.page_fluid(</div>
+      <div style="padding-left:16px">ui.input_text(<span style="color:#a5d6ff">"cards"</span>, <span style="color:#a5d6ff">"Your cards:"</span>),</div>
+      <div style="padding-left:16px">ui.output_text(<span style="color:#a5d6ff">"win_rate"</span>)</div>
+      <div>)</div>
+      <div style="margin-top:8px"><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">server</span>(input, output, session):</div>
+      <div style="padding-left:16px"><span style="color:#d2a8ff">@output</span></div>
+      <div style="padding-left:16px"><span style="color:#d2a8ff">@render.text</span></div>
+      <div style="padding-left:16px"><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff">win_rate</span>(): ...</div>
+      <div style="margin-top:8px"><span style="color:#79c0ff">app</span> = App(app_ui, server)</div>
+    </div>
+    <div class="card-body">
+      <h3>Core mode (recommended)</h3>
+      <p>Explicit separation of UI and server — the same mental model as R Shiny. More verbose but cleaner structure for an app this size.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Mirrors R Shiny exactly</li><li>Scales cleanly</li><li>Standard Posit Connect pattern</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More boilerplate upfront</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
