@@ -75,6 +75,20 @@ hands (user, timestamp, hole_cards, n_opponents, sim_win_pct, outcome)
 ```
 where `outcome` is one of `won`, `lost`, or `folded`, entered manually by the player after the hand resolves.
 
+### Session Bankroll Tracking & Leaderboard
+At the end of each session, every player enters how much they bought in for and how much they walked away with. The app calculates net profit/loss per session and maintains a running history across all sessions.
+
+This enables a persistent leaderboard showing:
+- Net winnings/losses per player over all sessions
+- Best and worst single sessions
+- Win rate over time (are you improving?)
+
+The additional table would be:
+```
+sessions (session_id, date, user, buy_in, cash_out, net)
+```
+where `net = cash_out - buy_in`. Sessions could be created by a host (whoever is running the game) and players join by name before entering their results at the end.
+
 ## Tech Stack
 
 - [Shiny for Python](https://shiny.posit.co/py/) (Core mode)
